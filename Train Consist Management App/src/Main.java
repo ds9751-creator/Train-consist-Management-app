@@ -27,7 +27,5 @@ public class Main{
 
         System.out.println("\nUC2 operations completed successfully...");
 
-
-        System.out.println("\nUC6 bogie-capacity mapping completed...");
     }
 }
