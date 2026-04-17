@@ -1,5 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
+
+public class Main {
+
+    static class GoodsBogie {
+        String type;
+        String cargo;
+
+        GoodsBogie(String type, String cargo) {
+            this.type = type;
+            this.cargo = cargo;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -20,6 +30,40 @@ public class UseCase10TrainConsistMgmnt {
 
     // ===================== MAIN =====================
     public static void main(String[] args) {
+        System.out.println("==============================================");
+        System.out.println(" UC12 - Safety Compliance Check for Goods Bogies ");
+        System.out.println("==============================================\n");
+
+        // Create goods bogie list
+        List<GoodsBogie> goodsBogies = new ArrayList<>();
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        goodsBogies.add(new GoodsBogie("Open", "Coal"));
+        goodsBogies.add(new GoodsBogie("Box", "Grain"));
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Coal")); // Safety Violation
+
+        System.out.println("Goods Bogies in Train:");
+        for (GoodsBogie gb : goodsBogies) {
+            System.out.println(gb.type + " -> " + gb.cargo);
+        }
+
+        // ---- APPLY SAFETY VALIDATION RULE ----
+        // Rule: If type is Cylindrical, cargo must be Petroleum
+        boolean isSafe = goodsBogies.stream().allMatch(b -> {
+            if (b.type.equalsIgnoreCase("Cylindrical")) {
+                return b.cargo.equalsIgnoreCase("Petroleum");
+            }
+            return true; // Other types are safe by default in this context
+        });
+
+        System.out.println("\nSafety Compliance Status: " + isSafe);
+
+        if (isSafe) {
+            System.out.println("Train formation is SAFE.");
+        } else {
+            System.out.println("Train formation is NOT SAFE.");
+        }
+
+        System.out.println("\nUC12 safety validation completed...");
 
         System.out.println("==============================================");
         System.out.println("UC13 - Performance Comparison (Loops vs Streams)");
