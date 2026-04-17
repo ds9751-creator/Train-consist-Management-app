@@ -35,5 +35,9 @@ public class UseCase10TrainConsistMgmnt {
 
         System.out.println("\nTotal Seating Capacity of Train: " + totalCapacity);
         System.out.println("\nUC10 aggregation completed...");
+public class Main{
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+
     }
 }
